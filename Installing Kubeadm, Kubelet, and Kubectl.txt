@@ -1,0 +1,16 @@
+# CHAPTER 2.4 - Installing Kubeadm, Kubelet, and Kubectl
+# https://learn.acloud.guru/course/2e0bad96-a602-4c91-9da2-e757d32abb8f/learn/56bea242-4b92-4bcb-ad80-f974467c8d7a/097bb262-1d4a-4870-9d1c-498ad730c348/watch
+
+# Here are the commands used to install the Kubernetes components in this lesson. Run these on all three servers.
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+sudo apt-get update
+
+sudo apt-get install -y kubelet=1.24.0-00 kubeadm=1.24.0-00 kubectl=1.24.0-00
+
+sudo apt-mark hold kubelet kubeadm kubectl
