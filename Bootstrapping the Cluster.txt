@@ -15,6 +15,10 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 sudo kubeadm join $some_ip:6443 --token $some_token --discovery-token-ca-cert-hash $some_hash
 
+# Use can print the full 'kubeadm join' flag needed to join the cluster with the following command:
+
+kubeadm token create --print-join-command
+
 # Run the kubeadm join command on your Kube Node 1 and Kube Node 2 servers:
 
 sudo kubeadm join <IP_ADDRESS> --token <TOKEN> --discovery-token-ca-cert-hash sha256:<HASH>
