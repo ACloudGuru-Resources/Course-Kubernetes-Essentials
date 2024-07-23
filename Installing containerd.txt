@@ -3,7 +3,7 @@
 
 # Here are the commands used install containerd. Run these on all three servers.
 
-# Distribution: Ubuntu 18.04 Bionic Beaver LTS
+# Distribution: Ubuntu 22.04 - Jammy Jellyfish
 # Size: Small
 # Tags: Kube Master, Kube Node 1, Kube Node 2
 
