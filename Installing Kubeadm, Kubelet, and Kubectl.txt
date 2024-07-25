@@ -7,15 +7,15 @@
 
 # Install dependency packages:
 
-sudo apt-get update && sudo apt-get install -y apt-transport-https  ca-certificates curl
+sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl gpg software-properties-common
 
 # Download and add GPG key:
 
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.27/deb/Release.key | sudo gig --dearmor -o /etc/apt/keyrings/kubernetes-apt.keyring.gpg
+sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 # Add Kubernetes to repository list:
 
-echo ‘deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.27/deb/ /‘ | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # Update package listings:
 
@@ -28,4 +28,8 @@ sudo apt-get install -y kubelet kubeadm kubectl
 # Turn off automatic updates:
 
 sudo apt-mark hold kubelet kubeadm kubectl
+
+# Enable the kubelet service:
+
+sudo systemctl enable --now kubelet
 
