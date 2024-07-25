@@ -12,9 +12,9 @@ kubectl get nodes
 # You should see all three of your servers listed, and all should have a STATUS of "Ready". It should look something like this:
 
 NAME                           STATUS   ROLES           AGE     VERSION
-f8bbdd78c31c.mylabserver.com   Ready    control-plane   3m18s   v1.24.0
-f8bbdd78c32c.mylabserver.com   Ready    <none>          2m21s   v1.24.0
-f8bbdd78c33c.mylabserver.com   Ready    <none>          2m5s    v1.24.0
+155f1d1c831c.mylabserver.com   Ready    control-plane   4m53s   v1.30.3
+155f1d1c832c.mylabserver.com   Ready    <none>          3m9s    v1.30.3
+155f1d1c833c.mylabserver.com   Ready    <none>          2m44s   v1.30.3
 
 # Note: It may take a few moments for all nodes to enter the "Ready" status, so if they are not all "Ready", wait a few moments and try again.
 
@@ -25,18 +25,18 @@ kubectl get pods -n kube-system
 # Expected output:
 
 NAME                                                   READY   STATUS    RESTARTS   AGE
-calico-kube-controllers-55fc758c88-sklwx               1/1     Running   0          66s
-calico-node-2qdd4                                      1/1     Running   0          66s
-calico-node-6cblh                                      1/1     Running   0          66s
-calico-node-g2czn                                      1/1     Running   0          66s
-coredns-6d4b75cb6d-b8m4m                               1/1     Running   0          3m32s
-coredns-6d4b75cb6d-r99sr                               1/1     Running   0          3m32s
-etcd-f8bbdd78c31c.mylabserver.com                      1/1     Running   0          3m44s
-kube-apiserver-f8bbdd78c31c.mylabserver.com            1/1     Running   0          3m46s
-kube-controller-manager-f8bbdd78c31c.mylabserver.com   1/1     Running   0          3m45s
-kube-proxy-7nx42                                       1/1     Running   0          2m35s
-kube-proxy-866ws                                       1/1     Running   0          3m32s
-kube-proxy-sbdms                                       1/1     Running   0          2m51s
-kube-scheduler-f8bbdd78c31c.mylabserver.com            1/1     Running   0          3m44s
+calico-kube-controllers-5b9b456c66-2p9pn               1/1     Running   0          75s
+calico-node-jff8p                                      1/1     Running   0          75s
+calico-node-pwhfh                                      1/1     Running   0          75s
+calico-node-zj79n                                      1/1     Running   0          75s
+coredns-7db6d8ff4d-c48lp                               1/1     Running   0          5m5s
+coredns-7db6d8ff4d-ct4fd                               1/1     Running   0          5m5s
+etcd-155f1d1c831c.mylabserver.com                      1/1     Running   0          5m19s
+kube-apiserver-155f1d1c831c.mylabserver.com            1/1     Running   0          5m19s
+kube-controller-manager-155f1d1c831c.mylabserver.com   1/1     Running   0          5m19s
+kube-proxy-ljbjf                                       1/1     Running   0          3m40s
+kube-proxy-rsmwb                                       1/1     Running   0          3m15s
+kube-proxy-rtnwg                                       1/1     Running   0          5m5s
+kube-scheduler-155f1d1c831c.mylabserver.com            1/1     Running   0          5m19s
 
 # You should have three pods with "calico" in the name, and all three should have a status of "Running".
