@@ -7,6 +7,10 @@
 # Size: Small
 # Tags: Kube Master, Kube Node 1, Kube Node 2
 
+# Disable swap:
+
+sudo swapoff -a
+
 # Create configuration file for containerd:
 
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
@@ -46,7 +50,7 @@ echo \
 
 # Install containerd. Note: use the following command "sudo kill -9 $( sudo lsof /var/lib/dpkg/lock-frontend | awk '{ print $2 }' | tail -1 )" if you receive a "E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?" message.
 
-sudo apt-get update && sudo apt-get install -y containerd.io
+sudo apt-get update && sudo apt-get install -y containerd
 
 # Create default configuration file for containerd:
 
@@ -56,6 +60,10 @@ sudo mkdir -p /etc/containerd
 
 sudo containerd config default | sudo tee /etc/containerd/config.toml
 
+# Update the systemd cgroups parameter in the /etc/containerd/config.toml file:
+
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+
 # Restart containerd to ensure new configuration file usage:
 
 sudo systemctl restart containerd
@@ -64,6 +72,3 @@ sudo systemctl restart containerd
 
 sudo systemctl status containerd
 
-# Disable swap:
-
-sudo swapoff -a

@@ -1,9 +1,14 @@
 # CHAPTER 2.5 - Bootstrapping the Cluster
 # https://learn.acloud.guru/course/2e0bad96-a602-4c91-9da2-e757d32abb8f/learn/56bea242-4b92-4bcb-ad80-f974467c8d7a/e896865d-af4d-43ec-92f9-a3c1b14433fc/watch
 
-# On the Kube master node, initialize the cluster:
+# On Kube Master, Kube Node 1 and Kube Node 2, stop and disable ufw:
 
-sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.24.0
+sudo systemctl stop ufw
+sudo ufw disable
+
+# On the Kube Master node, initialize the cluster:
+
+sudo kubeadm init --pod-network-cidr 192.168.0.0/16
 
 # Set kubectl access:
 
@@ -29,9 +34,9 @@ kubectl get nodes
 
 # You should see all three of your nodes listed. It should look something like this:
 
-NAME                           STATUS     ROLES           AGE    VERSION
-f8bbdd78c31c.mylabserver.com   NotReady   control-plane   112s   v1.24.0
-f8bbdd78c32c.mylabserver.com   NotReady   <none>          55s    v1.24.0
-f8bbdd78c33c.mylabserver.com   NotReady   <none>          39s    v1.24.0
+NAME                           STATUS     ROLES           AGE     VERSION
+155f1d1c831c.mylabserver.com   NotReady   control-plane   2m21s   v1.30.3
+155f1d1c832c.mylabserver.com   NotReady   <none>          37s     v1.30.3
+155f1d1c833c.mylabserver.com   NotReady   <none>          12s     v1.30.3
 
 # Note: The nodes are expected to have a STATUS of NotReady at this point
